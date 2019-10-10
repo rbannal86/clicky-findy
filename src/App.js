@@ -61,15 +61,12 @@ class App extends Component {
   }
 
   handleClick = (id) => {
-    console.log(id)
-    console.log(this.state.target.id)
     if(id === this.state.target.id) {
       this.setState({
         displayStatus: false
       })
     }
     else{
-      console.log('NOOOOPE!')
     }
   }
 
