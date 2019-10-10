@@ -1,0 +1,13 @@
+.target {
+  width: 100px;
+  height: 100px;
+  background-color: rebeccapurple;
+  font-size: 4rem;
+  font-weight: bolder;
+  color: white;
+}
+
+.target:focus {
+  background-color: firebrick;
+  color: firebrick;
+}
