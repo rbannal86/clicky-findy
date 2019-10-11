@@ -45,7 +45,17 @@ class App extends Component {
       }
     },
     target: {id: '1a'},
-    displayStatus: true
+    displayStatus: true,
+    clicks: 0,
+    finds: 0,
+    bestScore: null,
+    resetMessage: <main>
+    <h1>CLicKy-fINdY</h1>
+    <h2>YOU FOUND IT!</h2>
+    <h3>Ha ha HA ha HA ha!</h3>
+    <h4>Wow!</h4>
+    <Reset click={this.handleReset}/>
+  </main>
   }
   
   targetSet = () => {
@@ -61,19 +71,42 @@ class App extends Component {
   }
 
   handleClick = (id) => {
+    
+    let clickCount = this.state.clicks + 1
+    let findCount = this.state.finds
+    this.setState({
+      clicks: clickCount
+    })
     if(id === this.state.target.id) {
       this.setState({
-        displayStatus: false
+        displayStatus: false,
+        finds: findCount + 1
       })
+      if(!this.state.bestScore)
+      {
+        this.setState({
+          bestScore: clickCount
+        })
+      }
+      else if(this.state.bestScore > clickCount)
+      {
+        this.setState({
+          bestScore: clickCount
+        })
+      }
     }
     else{
     }
+    console.log(clickCount)
+    console.log(this.state.finds)
+    console.log(this.state.bestScore)
   }
 
   handleReset = () => {
     this.targetSet()
     this.setState({
-      displayStatus: true
+      displayStatus: true,
+      clicks: 0
     })
   }
 
@@ -86,6 +119,9 @@ class App extends Component {
     return (
       <main className='App'>
         <h1>CLicKy-fINdY</h1>
+        <h2 className='score'>CLicKys: {this.state.clicks}</h2>
+        <h2 className='score'>fINdYs: {this.state.finds}</h2>
+        {!this.state.bestScore ? '' : <h2 className='score'>BEsT ScORe: {this.state.bestScore}</h2>}
         <Square 
         target={this.state.target} 
         row1={this.state.squares.row1}

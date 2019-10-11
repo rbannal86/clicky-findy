@@ -8,3 +8,9 @@ main{
 h1{
   font-size: 3rem;
 }
+
+.score{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
